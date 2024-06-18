@@ -1,0 +1,15 @@
+services:
+  bundlar:
+    image: node:alpine
+    container_name: "BundlAR"
+    entrypoint: /bin/sh
+    ports:
+      - 8000:8000
+    working_dir: /srv/app
+    volumes:
+      #- ./:/srv/app
+      - type: bind
+        source: ./
+        target: /srv/app
+    tty: true
+    command: -c "npm install && npm run dev"

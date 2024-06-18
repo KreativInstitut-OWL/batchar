@@ -1,0 +1,167 @@
+@use "_ui";
+button {
+  cursor: pointer;
+}
+.btn {
+  border: 6px solid white;
+  padding: 0.6rem 1rem 0.4rem;
+  font-size: 1rem;
+  border-radius: 2rem;
+  transition:
+    color 0.3s ease,
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    opacity 0.3s ease,
+    filter 0.3s ease;
+
+  &-primary {
+    background: var(--primary);
+    border: 6px solid white;
+    color: black;
+    &:hover:not(:disabled),
+    &:focus:not(:disabled) {
+      cursor: pointer;
+      color: white;
+      border-color: var(--primary);
+      background: black;
+    }
+  }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    filter: grayscale(1);
+  }
+}
+
+.attention {
+  background: red;
+  color: white;
+  background: hsl(0, 100%, 50%);
+  &:hover {
+    background: hsl(0, 100%, 25%);
+  }
+}
+
+.addButton {
+  height: 132px;
+  width: 234px;
+  margin: 1rem;
+  opacity: 1;
+  background: transparent;
+  border: none;
+  display: flex;
+  flex-flow: column;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  @include ui.addButton;
+  transition:
+    border-color 0.3s ease,
+    background-color 0.3s ease,
+    opacity 0.3s ease;
+  //   .bg {
+  //     position: absolute;
+  //     top: 0;
+  //     left: 0;
+  //     width: 100%;
+  //     height: 100%;
+  //     background-image: url("../img/addbuttonborder.svg");
+  //     background-size: 100% 100%;
+  //     background-repeat: no-repeat;
+  //     stroke-dasharray: 10 10;
+  //     transition: stroke-dashoffset 0.2s ease;
+  //   }
+  .plusimg {
+    max-width: 33%;
+    margin-bottom: 0.5rem;
+  }
+
+  &:active {
+    transition: none;
+    opacity: 0;
+  }
+  &:hover {
+    @include ui.addButton-hover;
+    cursor: pointer;
+    // .bg {
+    //   animation: adButtonHover 0.5s linear;
+    //   // stroke-dashoffset: 10;
+    //   animation-iteration-count: infinite;
+    // }
+  }
+}
+
+.delete-all {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  translate: 5% -50%;
+  animation: error-fade-in 0.3s ease;
+  cursor: pointer;
+  @media screen and (max-width: 580px) {
+    bottom: -3.5rem;
+    top: unset;
+  }
+}
+
+.add-image-button {
+  min-height: 25dvh;
+  max-height: 100%;
+  width: 100%;
+  border-radius: 1rem;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  background: transparent;
+  display: flex;
+  flex-flow: column;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  font-size: 1.5rem;
+  padding: 1rem 2rem;
+
+  small {
+    font-size: 0.75rem;
+    color: #707070;
+    pointer-events: none;
+  }
+
+  .bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    stroke-dasharray: 10 10;
+    transition: stroke-dashoffset 0.2s ease;
+  }
+}
+
+.connectWalletButton {
+  position: fixed;
+  width: fit-content;
+  right: 2rem;
+  top: 2rem;
+  box-shadow: 0 0 0.5rem 0.1rem rgba(56, 56, 56, 0.1);
+  animation: error-fade-in 0.3s ease;
+  z-index: 2;
+}
+
+.delete-image-button {
+  position: absolute;
+  width: 6rem;
+  top: calc(50% - 1.5rem);
+  left: calc(50% - 3rem);
+}
+
+.createButton {
+  @media screen and (max-width: 832px) {
+    margin-top: 1rem;
+    margin-left: 2.5rem;
+  }
+}

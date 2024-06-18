@@ -1,0 +1,239 @@
+//Custom UI styles
+
+@mixin addButton {
+  border-radius: 1rem;
+  border: 0.35rem dashed black;
+  transition:
+    border-color 0.3s ease,
+    background-color 0.3s ease;
+  img {
+    pointer-events: none;
+    transform: scale(1);
+    transition: transform 0.3s ease;
+  }
+}
+
+@mixin addButton-hover {
+  border-color: var(--primary);
+  background-color: white !important;
+
+  img {
+    transform: scale(1.1);
+  }
+}
+
+.custom-underline {
+  position: relative;
+  &:after {
+    content: "";
+    position: absolute;
+    top: calc(100% - 4px);
+    left: 0px;
+    overflow: hidden;
+    margin: 0;
+    width: calc(100% + 0.35rem);
+    height: 12px;
+    background: url("../img/kio-line.svg") center center no-repeat;
+  }
+}
+
+@mixin panel-styles {
+  background-color: rgba(237, 237, 237, 0.39);
+  margin-top: 0.5rem;
+  border: 6px solid white;
+  border-radius: 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 0.5rem 0.1rem rgba(56, 56, 56, 0.1);
+}
+
+//Accordion
+
+.accordion {
+  border: none;
+  font-family: inherit;
+  background-color: transparent;
+  color: #707070;
+  border-bottom: 1px solid #707070;
+  transition: all 0.3s ease;
+  display: flex;
+  &:hover {
+    color: black;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+    &::after {
+      animation: bounce 1.5s ease;
+      animation-iteration-count: infinite;
+    }
+  }
+
+  &::after {
+    content: url("../img/chevron.svg");
+    height: 0.5rem;
+    width: 0.5rem;
+    margin-left: 5px;
+    transform: translate(0, -0.1rem);
+  }
+
+  &.active {
+    border-bottom: 1px solid var(--primary);
+  }
+}
+
+.panel {
+  @include panel-styles;
+  visibility: hidden;
+  opacity: 0;
+  transform: scale(0);
+  transform-origin: top left;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease,
+    max-height 0.5s ease,
+    visibility 0.1s 0.3s ease;
+  padding: 1rem 0;
+  height: fit-content;
+  max-height: 0vh;
+  &.w-100 {
+    width: 100%;
+  }
+  &.open {
+    visibility: visible;
+    transform: scale(1);
+    opacity: 1;
+    max-height: 100vh;
+    transition:
+      max-height 0.3s ease,
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+}
+
+//Wallet Connectivity
+
+.walletInfo {
+  position: fixed;
+  width: fit-content;
+  right: 2rem;
+  top: 2rem;
+  z-index: 2;
+  border: 6px solid white;
+  font-size: 1rem;
+  border-radius: 2rem;
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 0;
+  background: var(--primary);
+  border: 6px solid white;
+  color: black;
+  overflow: hidden;
+  box-shadow: 0 0 0.5rem 0.1rem rgba(56, 56, 56, 0.1);
+  animation: error-fade-in 0.3s ease;
+  transition: all 0.3s ease;
+
+  div {
+    display: flex;
+    padding: 0.5rem 1rem;
+    justify-content: center;
+    width: fit-content;
+    transition: all 0.3s ease;
+  }
+  button {
+    border: none;
+    background: var(--primary);
+    color: black;
+    display: flex;
+    padding: 0.5rem 1rem;
+    justify-content: center;
+    border-right: 6px solid white;
+    text-decoration: underline transparent;
+    transition: all 0.3s ease;
+    font-size: inherit;
+    cursor: pointer;
+    &::before {
+      content: url("../img/walletIcon.svg");
+      margin-right: 0.5rem;
+      height: 1.25rem;
+      width: 1.25rem;
+      transition: filter 0.3s ease;
+    }
+    &::after {
+      content: url("../img/chevron.svg");
+      float: right;
+      margin-left: 5px;
+      height: 0.75rem;
+      width: 0.75rem;
+      transition: filter 0.3s ease;
+    }
+    &:hover {
+      color: white;
+      background: black;
+      text-decoration: underline white;
+      &::before,
+      &::after {
+        filter: invert(1);
+      }
+    }
+  }
+}
+
+.walletPanel {
+  @include panel-styles;
+  padding: 0rem;
+  opacity: 0;
+  scale: 0;
+  transform-origin: top right;
+  position: fixed;
+  top: calc(2rem + 48px);
+  right: 2rem;
+  z-index: 2;
+
+  &-open {
+    scale: 1;
+    opacity: 1;
+    z-index: 2;
+    backdrop-filter: blur(1rem);
+    height: fit-content;
+  }
+  ul {
+    list-style-type: none;
+    font-size: inherit;
+    padding: 0;
+    margin: 0;
+    li {
+      padding: 1rem;
+      border-bottom: 1px solid white;
+      &:last-of-type {
+        border-bottom: none;
+      }
+      button {
+        background: transparent;
+        border: none;
+        font-size: inherit;
+        text-decoration: underline;
+        transition: all 0.3s ease;
+        color: #707070;
+        cursor: pointer;
+        &:hover {
+          color: black;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 832px) {
+  .accordion {
+    flex-grow: 2;
+    width: 100%;
+    min-height: 2rem;
+    display: flex;
+    flex-flow: row;
+    align-items: flex-end;
+  }
+
+  .custom-underline {
+    &::after {
+      filter: brightness(0);
+    }
+  }
+}

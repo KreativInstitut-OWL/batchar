@@ -1,0 +1,48 @@
+footer {
+  margin-top: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  gap: 2rem;
+  color: white;
+  background: black;
+  a {
+    color: white;
+    transition: color 0.3s;
+    &:hover {
+      color: var(--primary);
+    }
+  }
+  .bg-white {
+    background: white;
+    color: black;
+    padding: 0.25rem 0.5rem;
+    line-height: 4rem;
+    font-size: 1.25rem;
+  }
+  .grid {
+    max-width: 100%;
+    min-width: 80dvw;
+    display: grid;
+    grid-template-rows: 1fr 20px 1fr 20px 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 0.5rem 2rem;
+    @media (max-width: 480px) {
+      display: flex;
+      flex-flow: column;
+    }
+    .socials {
+      display: flex;
+      flex-flow: row;
+      gap: 2rem;
+      padding-top: 1rem;
+    }
+    .col-span-full {
+      grid-column: 1 / 5;
+    }
+    .col-span-2 {
+      grid-column: span 2;
+    }
+  }
+}

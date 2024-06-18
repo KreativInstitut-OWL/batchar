@@ -1,0 +1,25 @@
+.dragging {
+  opacity: 0.5;
+}
+
+.draggable-input.isDraggedOver {
+  position: relative;
+  &.edge-top::after {
+    content: "";
+    position: absolute;
+    top: -0.5rem;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    border-bottom: 2px solid blue;
+  }
+  &.edge-bottom::after {
+    content: "";
+    position: absolute;
+    bottom: -0.5rem;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    border-bottom: 2px solid blue;
+  }
+}
