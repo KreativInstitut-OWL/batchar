@@ -38,7 +38,7 @@ should work. To preview the built version locally, run `npm run preview`.
     MindAR) that the finished AR experience will need. You could load those via
     a CDN, but to comply with EU regulation, we opted to just include the
     files.
-- `src` has the actual app. Here you will find components, helper functions,
+- `/src` has the actual app. Here you will find components, helper functions,
   assets, tests etc.
   - `/src/content` contains the content that gets displayed in the app:
   - `/src/content/content.ts` holds the description text
@@ -62,3 +62,6 @@ This app is built with react using vite and relies heavily on
 ](https://github.com/hiukim). Huge thanks to him for his outstanding work! The
 drag-and-drop functionality is achieved via atlassians [Pragmatic Drag &
 Drop](https://github.com/atlassian/pragmatic-drag-and-drop).
+
+BatchAR was made with love by [Conrad Dreyer](https://conraddreyer.com) at
+[KIO](https://kreativ.institute).
