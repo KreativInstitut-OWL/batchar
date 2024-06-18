@@ -1,30 +1,64 @@
-# React + TypeScript + Vite
+# KIO BatchAR
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+BatchAR enables you to create augmented reality (AR) experiences that can be
+hosted on your own server. No coding required: just drag and drop your tracking
+markers and the corresponding assets that should be displayed when scanned into
+the web app and click the "Batch" button. All the files will be processed
+locally, in your browser and bundled into a zip file. After you upload the
+contents of the unzipped folder into the root directory of your web server, the
+experience will be available at your domain. Visit it with your smartphone,
+allow camera access and scan your tracking markers.
 
-Currently, two official plugins are available:
+Currently `png`, `jpg`, `jpeg`, `webp`, `mp4` & `mpeg` file formats are
+supported. (Only the mentioned image formats work as tracking markers, though).
+BatchAR has language support for German and English.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This repository hosts the open source version of KIO BatchAR. Our official
+deployment of the app (with nothing more than a little bit of branding added)
+is hosted here: https://batchar.kreativ.institute. Feel free to try it out.
 
-## Expanding the ESLint configuration
+## Development Guide
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Get the dev environment working
 
-- Configure the top-level `parserOptions` property like this:
+Since the app is built with react, clone the repo and run `npm install` if you
+work with docker locally, `docker compose up -d` should run the BatchAR on
+localhost:8000. Otherwise, `npm run dev` will do the trick as well.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+### Create production build
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+To build the App, run `npm run build`. Since BatchAR by itself is a static app,
+you can deploy the contents of the `dist` folder to any web server and it
+should work. To preview the built version locally, run `npm run preview`.
+
+### Directory Structure
+
+- `/public` contains public assets.
+  - `/public/js-includes` includes the necessary js libraries (a-frame and
+    MindAR) that the finished AR experience will need. You could load those via
+    a CDN, but to comply with EU regulation, we opted to just include the
+    files.
+- `src` has the actual app. Here you will find components, helper functions,
+  assets, tests etc.
+  - `/src/content` contains the content that gets displayed in the app:
+  - `/src/content/content.ts` holds the description text
+  - `/src/content/ui.ts` holds the text of all ui elements. Currently, only
+    German and English are supported, but feel free to contribute another
+    language.
+  - `/src/content/supported-upload-media.ts` controls wich media types are
+    allowed for upload and processing.
+
+## Contributions
+
+You can modify the code to your hearts content. If there is a cool feature you
+implemented, feel free to make a pull request.
+
+Also, adding another language to the UI would be highly appreciated.
+
+## Credits
+
+This app is built with react using vite and relies heavily on
+[MindAR](https://github.com/hiukim/mind-ar-js) by [ HiuKim Yuen
+](https://github.com/hiukim). Huge thanks to him for his outstanding work! The
+drag-and-drop functionality is achieved via atlassians [Pragmatic Drag &
+Drop](https://github.com/atlassian/pragmatic-drag-and-drop).
